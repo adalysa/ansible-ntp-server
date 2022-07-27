@@ -1,0 +1,9 @@
+- name: Install Firewalld
+  yum:
+    state: present
+    name:
+      - firewalld
+
+- name: Enable, Start, and Display FirewallD
+  shell: systemctl enable firewalld
+  shell: systemctl start firewalld
