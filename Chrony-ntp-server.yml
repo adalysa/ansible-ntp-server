@@ -1,0 +1,25 @@
+#NTP Configuration Playbook
+
+- hosts: ntp
+  become: yes
+  roles:
+    - firewalld
+  tasks:
+    - name: allow ntp through firewall
+      shell: firewall-cmd --add-service=ntp --permanent
+
+    - name: firewall reload
+      shell: firewall-cmd --reload
+
+    - name: Install Chrony
+      yum:
+        state: latest
+        name:
+          - chrony
+
+    - name: Make sure Chrony is started up
+      service: name=chronyd state=started enabled=yes
+      tags: chrony
+
+    - name: set timezone
+      shell: timedatectl set-timezone '{{time_zone}}'
