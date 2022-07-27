@@ -1,0 +1,9 @@
+[ntp]
+x.x.x.x
+x.x.x.x
+
+[ntp:vars]
+time_zone = Europe/Paris
+
+[all:vars]
+ansible_python_interpreter=/usr/bin/python3
